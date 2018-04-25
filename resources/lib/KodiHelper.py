@@ -42,6 +42,9 @@ CONTENT_SHOW = 'tvshows'
 CONTENT_SEASON = 'seasons'
 CONTENT_EPISODE = 'episodes'
 
+TAGGED_WINDOW_ID = 10000
+PROP_NETFLIX_PLAY = 'netflix_playback'
+PROP_PLAYBACK_INIT = 'initialized'
 
 def _update_if_present(source_dict, source_att, target_dict, target_att):
     if source_dict.get(source_att):
@@ -52,10 +55,6 @@ class KodiHelper(object):
     """
     Consumes all the configuration data from Kodi as well as
     turns data into lists of folders and videos"""
-
-    TAGGED_WINDOW_ID = 10000
-    PROP_NETFLIX_PLAY = 'netflix_playback'
-    PROP_PLAYBACK_INIT = 'initialized'
 
     def __init__(self, plugin_handle, base_url, library):
         """
@@ -977,9 +976,9 @@ class KodiHelper(object):
             listitem=play_item)
 
         # set window property to enable recognition of playbacks
-        xbmcgui.Window(self.TAGGED_WINDOW_ID).setProperty(
-            self.PROP_NETFLIX_PLAY,
-            self.PROP_PLAYBACK_INIT
+        xbmcgui.Window(TAGGED_WINDOW_ID).setProperty(
+            PROP_NETFLIX_PLAY,
+            PROP_PLAYBACK_INIT
         )
 
         return resolved
